@@ -1,6 +1,9 @@
-import org.openqa.selenium.By;
-import org.testng.Assert;
+package testrunner;
+
+import config.Setup;
 import org.testng.annotations.Test;
+import pages.DashboardPage;
+import pages.LoginPage;
 
 public class DashboardTestRunner extends Setup {
 
@@ -16,6 +19,6 @@ public class DashboardTestRunner extends Setup {
     @Test(priority = 2)
     public void createUser(){
         dashboardPage = new DashboardPage(driver);
-        dashboardPage.createUser("Shaishab","Poddar","shaishab","shaishab_123");
+        dashboardPage.createUser("Tester73","xyz","tester73","tester_123");
     }
 }

@@ -14,8 +14,8 @@ public class LoginTestRunner extends Setup {
     public void doLoginWithWrongCreds(){
         loginPage = new LoginPage(driver);
         loginPage.doLogin("Admin","WrongPass");
-        String textactual = driver.findElement(By.className("oxd-alert-content-text")).getText();
-        Assert.assertTrue(textactual.contains("Invalid credentials"));
+        String textActual = driver.findElement(By.className("oxd-alert-content-text")).getText();
+        Assert.assertTrue(textActual.contains("Invalid credentials"));
     }
 
     @Test(priority = 2)

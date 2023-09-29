@@ -1,24 +1,44 @@
 package testrunner;
 
+import com.github.javafaker.Faker;
 import config.Setup;
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.By;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
+import utils.Utils;
+
+import java.io.IOException;
+
 
 public class DashboardTestRunner extends Setup {
 
     LoginPage loginPage;
     DashboardPage dashboardPage;
 
-    @Test(priority = 1)
+    @BeforeTest
     public void doLogin(){
         loginPage = new LoginPage(driver);
         loginPage.doLogin("Admin","admin123");
     }
 
-    @Test(priority = 2)
-    public void createUser(){
+    @Test(priority = 1)
+    public void createUser() throws IOException, ParseException, InterruptedException {
         dashboardPage = new DashboardPage(driver);
-        dashboardPage.createUser("Tester73","xyz","tester73","tester_123");
+
+        Faker faker = new Faker();
+        String firstName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String username = faker.name().username();
+        String password = faker.internet().password();
+
+        dashboardPage.createUser(firstName, lastName, username, password);
+        Thread.sleep(7000);
+        String textTitleExcepted = driver.findElement(By.xpath("//*[contains(text(),\"Personal Details\")]")).getText();
+        if(textTitleExcepted.contains("Personal Details")){
+            Utils.saveEmployeeInfo(firstName, lastName, username, password);
+        }
     }
 }

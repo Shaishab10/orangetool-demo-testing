@@ -14,7 +14,7 @@ public class UserLoginTestRunner extends Setup {
 
     LoginPage loginPage;
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "New user login successfully")
     public void userLogin() throws IOException, ParseException {
         loginPage = new LoginPage(driver);
         JSONArray empList = Utils.readJSONList("./src/test/resources/employees.json");

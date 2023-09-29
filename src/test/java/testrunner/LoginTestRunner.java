@@ -1,12 +1,14 @@
 package testrunner;
 
 import config.Setup;
+import io.qameta.allure.Allure;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 import utils.Utils;
 
@@ -16,7 +18,7 @@ public class LoginTestRunner extends Setup {
 
     LoginPage loginPage;
 
-    @Test(priority = 1,enabled = false)
+    @Test(priority = 1, description = "Admin try to login with wrong creds")
     public void doLoginWithWrongCreds() {
         loginPage = new LoginPage(driver);
         loginPage.doLogin("Admin","WrongPass");
@@ -24,7 +26,7 @@ public class LoginTestRunner extends Setup {
         Assert.assertTrue(textActual.contains("Invalid credentials"));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "Admin successfully login with valid creds")
     public void doLogin() throws IOException, ParseException {
         loginPage = new LoginPage(driver);
         JSONArray empArray = Utils.readJSONList("./src/test/resources/employees.json");
@@ -35,10 +37,16 @@ public class LoginTestRunner extends Setup {
         else {
             loginPage.doLogin(empObj.get("username").toString(), empObj.get("password").toString());
         }
-        Assert.assertTrue(driver.findElement(By.className("oxd-userdropdown-img")).isDisplayed());
+
+        SoftAssert softAssert =new SoftAssert();
+
+        softAssert.assertTrue(driver.findElement(By.className("oxd-userdropdown-img")).isDisplayed());
+        softAssert.assertTrue(driver.getCurrentUrl().contains("dashboard"));
+        softAssert.assertAll();
+        Allure.description("Admin Successfully Login");
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, description = "Admin successfully logs out")
     public void logout(){
         loginPage = new LoginPage(driver);
         loginPage.doLogout();

@@ -11,7 +11,7 @@ import java.util.List;
 public class DashboardPage{
 
     @FindBy(className = "oxd-main-menu-item--name")
-   List<WebElement>  menuItems;
+     public List<WebElement>  menuItems;
 
     @FindBy(className = "oxd-button")
     List<WebElement> buttons;
@@ -27,7 +27,7 @@ public class DashboardPage{
     }
 
     public void createUser(EmployeeModel model){
-        menuItems.get(1).click();   //click pim
+
         buttons.get(2).click();     //click add user
         formTextFields.get(1).sendKeys(model.getFirstname()); //firstname
         formTextFields.get(3).sendKeys(model.getLastname());   //lastname

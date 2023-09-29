@@ -1,1 +1,32 @@
-[{"firstName":"Test","lastName":"User","password":"P@ssword123","username":"testuser123"},{"firstName":"Mohammad","lastName":"Schimmel","password":"u1n2tcew","username":"jestine.kris"},{"firstName":"Deon","lastName":"Kulas","password":"futxm14xilyf2","username":"terrence.dibbert"}]
+[
+  {
+    "firstName": "Admin",
+    "lastName": "test",
+    "password": "admin123",
+    "username": "Admin"
+  },
+  {
+    "firstName": "Test",
+    "lastName": "User",
+    "password": "P@ssword123",
+    "username": "testuser123"
+  },
+  {
+    "firstName": "Mohammad",
+    "lastName": "Schimmel",
+    "password": "u1n2tcew",
+    "username": "jestine.kris"
+  },
+  {
+    "firstName": "Deon",
+    "lastName": "Kulas",
+    "password": "futxm14xilyf2",
+    "username": "terrence.dibbert"
+  },
+  {
+    "firstName": "Fleta",
+    "lastName": "Kovacek",
+    "password": "6gs4f8bjh",
+    "username": "jacinta.halvorson"
+  }
+]
